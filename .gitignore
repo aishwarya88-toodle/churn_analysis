@@ -1,0 +1,33 @@
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*.so
+
+# SQLite and DB files
+*.sqlite
+*.db
+
+# CSV or data output files (optional – only if you don’t want to push these)
+*.csv
+
+# Environment files (if any)
+.env
+*.env
+
+# VSCode or IDE folders
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs or output
+*.log
+
+# Ignore text files (like README.md.txt)
+*.txt
+
