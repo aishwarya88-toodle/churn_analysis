@@ -82,7 +82,9 @@ churn_analysis/
 
 ## 📈 Model Performance
 
-![Model Output](images/model_output.png)
+![Model Output](images/final_model_output.png)
+### ROC Curve
+![ROC Curve](output/roc_curves.png)
 
 ### ✅ Best Model: Logistic Regression
 - Accuracy: **~81%**
