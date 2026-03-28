@@ -6,7 +6,7 @@ import pandas as pd
 
 def preprocess_data(df, target_column='Churn'):
     X = df.drop(columns=[target_column])
-    y = df[target_column].map({'Yes': 1, 'No': 0})
+    y = df[target_column].astype(int)
 
     categorical_cols = X.select_dtypes(include=['object', 'bool']).columns.tolist()
     numeric_cols = X.select_dtypes(include=['int64', 'float64']).columns.tolist()

@@ -5,6 +5,7 @@ from xgboost import XGBClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 
+
 def build_models():
     return {
         "Logistic Regression": LogisticRegression(max_iter=1000),
@@ -13,15 +14,33 @@ def build_models():
         "XGBoost": XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=42)
     }
 
+
 def train_model(df, target_column='Churn'):
     from src.preprocessing import preprocess_data
 
-    X, y, preprocessor = preprocess_data(df, target_column)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+    # ✅ FIX: clean target INSIDE function
+    df[target_column] = df[target_column].astype(str).str.strip()
+    df[target_column] = df[target_column].map({'Yes': 1, 'No': 0, '1': 1, '0': 0})
 
+    df = df.dropna(subset=[target_column])
+    df[target_column] = df[target_column].astype(int)
+
+    # Debug (optional but useful)
+    print("After cleaning target:")
+    print(df[target_column].value_counts())
+
+    # Preprocessing
+    X, y, preprocessor = preprocess_data(df, target_column)
+
+    # Split
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.3, random_state=42
+    )
+
+    # Train models
     models = build_models()
     trained_models = {}
-    
+
     for name, clf in models.items():
         pipeline = Pipeline(steps=[
             ('preprocessor', preprocessor),

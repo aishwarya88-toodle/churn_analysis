@@ -1,7 +1,8 @@
 import os
 import sys
 
-# Ensure the 'src' folder is discoverable
+
+
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
 
 from data_loader import load_data
@@ -10,7 +11,7 @@ from evaluation import evaluate_models
 
 def main():
     print("Loading data...")
-    file_path = os.path.join("data", "churn_analysis.csv")
+    file_path = os.path.join("data", "cleaned_churn.csv")
     df = load_data(file_path)
 
     print("Training models...")
